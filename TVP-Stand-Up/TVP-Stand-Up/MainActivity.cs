@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace TVP_Stand_Up
 {
-    [Activity(Label = "TVP_Stand_Up", MainLauncher = true)]
+    [Activity(MainLauncher = true)]
     public class MainActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
