@@ -12,6 +12,7 @@ namespace TVP_Stand_Up
             base.OnCreate(savedInstanceState);
 
             // Set our view from the "main" layout resource
+            // This is a test to see if I can commit from BYOD
             SetContentView(Resource.Layout.Main);
         }
     }
