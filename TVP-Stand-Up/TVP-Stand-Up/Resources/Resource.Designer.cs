@@ -41,103 +41,6 @@ namespace TVP_Stand_Up
 			}
 		}
 		
-		public partial class Color
-		{
-			
-			// aapt resource value: 0x7f03000b
-			public const int tvp_anchor = 2130903051;
-			
-			// aapt resource value: 0x7f03000c
-			public const int tvp_anchor_hover = 2130903052;
-			
-			// aapt resource value: 0x7f030013
-			public const int tvp_aqua = 2130903059;
-			
-			// aapt resource value: 0x7f03001b
-			public const int tvp_black = 2130903067;
-			
-			// aapt resource value: 0x7f030012
-			public const int tvp_blue = 2130903058;
-			
-			// aapt resource value: 0x7f030018
-			public const int tvp_burgundy = 2130903064;
-			
-			// aapt resource value: 0x7f030011
-			public const int tvp_button_disabled = 2130903057;
-			
-			// aapt resource value: 0x7f03000d
-			public const int tvp_button_primary = 2130903053;
-			
-			// aapt resource value: 0x7f03000e
-			public const int tvp_button_primary_hover = 2130903054;
-			
-			// aapt resource value: 0x7f03000f
-			public const int tvp_button_secondary = 2130903055;
-			
-			// aapt resource value: 0x7f030010
-			public const int tvp_button_secondary_hover = 2130903056;
-			
-			// aapt resource value: 0x7f030003
-			public const int tvp_dark_blue = 2130903043;
-			
-			// aapt resource value: 0x7f030007
-			public const int tvp_dark_gray = 2130903047;
-			
-			// aapt resource value: 0x7f030015
-			public const int tvp_darkblue = 2130903061;
-			
-			// aapt resource value: 0x7f030002
-			public const int tvp_darkest_blue = 2130903042;
-			
-			// aapt resource value: 0x7f030019
-			public const int tvp_darkgreen = 2130903065;
-			
-			// aapt resource value: 0x7f030017
-			public const int tvp_darkpurple = 2130903063;
-			
-			// aapt resource value: 0x7f030006
-			public const int tvp_gray = 2130903046;
-			
-			// aapt resource value: 0x7f030014
-			public const int tvp_green = 2130903060;
-			
-			// aapt resource value: 0x7f030005
-			public const int tvp_light_blue = 2130903045;
-			
-			// aapt resource value: 0x7f030009
-			public const int tvp_light_gray = 2130903049;
-			
-			// aapt resource value: 0x7f03000a
-			public const int tvp_lightest_gray = 2130903050;
-			
-			// aapt resource value: 0x7f030004
-			public const int tvp_medium_blue = 2130903044;
-			
-			// aapt resource value: 0x7f030008
-			public const int tvp_medium_gray = 2130903048;
-			
-			// aapt resource value: 0x7f030001
-			public const int tvp_navy_blue = 2130903041;
-			
-			// aapt resource value: 0x7f030016
-			public const int tvp_purple = 2130903062;
-			
-			// aapt resource value: 0x7f030000
-			public const int tvp_redefining_blue = 2130903040;
-			
-			// aapt resource value: 0x7f03001a
-			public const int tvp_textgray = 2130903066;
-			
-			static Color()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Color()
-			{
-			}
-		}
-		
 		public partial class Layout
 		{
 			
@@ -157,8 +60,8 @@ namespace TVP_Stand_Up
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int app_name = 2130968576;
+			// aapt resource value: 0x7f030000
+			public const int app_name = 2130903040;
 			
 			static String()
 			{
@@ -166,22 +69,6 @@ namespace TVP_Stand_Up
 			}
 			
 			private String()
-			{
-			}
-		}
-		
-		public partial class Style
-		{
-			
-			// aapt resource value: 0x7f050000
-			public const int MyCustomTheme = 2131034112;
-			
-			static Style()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Style()
 			{
 			}
 		}
