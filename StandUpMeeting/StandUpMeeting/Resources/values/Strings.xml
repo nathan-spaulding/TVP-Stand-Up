@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">StandUpMeeting</string>
+  <string name="openDrawer">Drawer Opened</string>
+  <string name="closeDrawer">Drawer Closed</string>
 </resources>

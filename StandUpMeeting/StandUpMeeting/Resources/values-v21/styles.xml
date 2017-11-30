@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <resources>
   <!--Inherit from the light Material Theme-->
-  <style name="MyCustomTheme" parent="android:Theme.Material.Light">
+  <style name="MyCustomTheme" parent="Theme.AppCompat.Light.NoActionBar">
     <!--Customizations go here-->
     <item name="android:colorPrimary">@color/tvp_blue</item>
-    <item name="android:statusBarColor">@color/tvp_aqua</item>
+    <item name="android:statusBarColor">@color/tvp_navy_blue</item>
+    <item name="drawerArrowStyle">@style/MyDrawerArrowStyle</item>
+  </style>
+
+  <style name="MyDrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+     <item name="color">#F5F5F5</item>
+     <item name="spinBars">true</item>
   </style>
 </resources>
