@@ -15,16 +15,12 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <ListView
-            android:id="@+id/drawer"
-            android:layout_width="240dp"
+    <!-- Content Layer Here -->
+        <android.support.design.widget.NavigationView
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:choiceMode="singleChoice"
-            android:divider="#818181"
-            android:background="@color/tvp_lightest_gray" />
+            android:id="@+id/nav_view"
+            app:menu="@menu/nav_menu" />
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

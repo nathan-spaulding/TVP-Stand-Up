@@ -6,6 +6,7 @@ using Android.Support.V7.App;
 using Android.Support.V4.Widget;
 using Android.Views;
 using Android.Content.Res;
+using Android.Support.Design.Widget;
 
 namespace StandUpMeeting
 {
@@ -13,9 +14,10 @@ namespace StandUpMeeting
     public class MainActivity : AppCompatActivity
     {
         private SupportToolbar mToolbar;
-        private MyActionBarDrawerToggle mDrawerToggle;
         private DrawerLayout mDrawerLayout;
-        private ListView mDrawerList;
+        private NavigationView mNavigationView;
+
+        //private ListView mDrawerList;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -26,58 +28,59 @@ namespace StandUpMeeting
 
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            mDrawerList = FindViewById<ListView>(Resource.Id.drawer);
+            mNavigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
 
             SetSupportActionBar(mToolbar);
 
-            mDrawerToggle = new MyActionBarDrawerToggle(
-                this,
-                mDrawerLayout,
-                Resource.String.openDrawer,
-                Resource.String.closeDrawer
-            );
-         
-            mDrawerLayout.AddDrawerListener(mDrawerToggle);
-            SupportActionBar.SetHomeButtonEnabled(true);
+            //SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            SupportActionBar.SetDisplayShowTitleEnabled(true);
-            mDrawerToggle.SyncState();
+            SupportActionBar.SetDisplayShowHomeEnabled(true);
 
-            if (savedInstanceState != null)
+            mNavigationView.NavigationItemSelected += (sender, e) =>
             {
-                if (savedInstanceState.GetString("DrawerState") == "Opened")
-                    SupportActionBar.SetTitle(Resource.String.openDrawer);
-                else if (savedInstanceState.GetString("DrawerState") == "Closed")
-                    SupportActionBar.SetTitle(Resource.String.closeDrawer);
-            }
-            else
-            {
-                //This is the first time the activity is ran
-                SupportActionBar.SetTitle(Resource.String.app_name);
-            }
+                e.MenuItem.SetChecked(true);
+                // react to click here and swap fragments / navigate
+                mToolbar.Title = e.MenuItem.TitleFormatted.ToString();
+                mDrawerLayout.CloseDrawers();
+            };
+
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            mDrawerToggle.OnOptionsItemSelected(item);
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    if (mDrawerLayout.IsDrawerOpen(Android.Support.V4.View.GravityCompat.Start))
+                        mDrawerLayout.CloseDrawer(Android.Support.V4.View.GravityCompat.Start);
+                    else
+                        mDrawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
+                    return true;
+            }
             return base.OnOptionsItemSelected(item);
         }
 
-        protected override void OnPostCreate(Bundle savedInstanceState)
-        {
-            base.OnPostCreate(savedInstanceState);
-            mDrawerToggle.SyncState();
-        }
+        //public override bool OnOptionsItemSelected(IMenuItem item)
+        //{
+        //    mDrawerToggle.OnOptionsItemSelected(item);
+        //    return base.OnOptionsItemSelected(item);
+        //}
 
-        protected override void OnSaveInstanceState(Bundle outState)
-        {
-            if (mDrawerLayout.IsDrawerOpen((int)GravityFlags.Left))
-                outState.PutString("DrawerState", "Opened");
-            else
-                outState.PutString("DrawerState", "Closed");
+        //protected override void OnPostCreate(Bundle savedInstanceState)
+        //{
+        //    base.OnPostCreate(savedInstanceState);
+        //    mDrawerToggle.SyncState();
+        //}
 
-            base.OnSaveInstanceState(outState);
-        }
+        //protected override void OnSaveInstanceState(Bundle outState)
+        //{
+        //    if (mDrawerLayout.IsDrawerOpen((int)GravityFlags.Left))
+        //        outState.PutString("DrawerState", "Opened");
+        //    else
+        //        outState.PutString("DrawerState", "Closed");
+
+        //    base.OnSaveInstanceState(outState);
+        //}
     }
 }
 
