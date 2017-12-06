@@ -4,8 +4,6 @@ using Android.OS;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V7.App;
 using Android.Support.V4.Widget;
-using Android.Views;
-using Android.Content.Res;
 using Android.Support.Design.Widget;
 
 namespace StandUpMeeting
@@ -17,8 +15,6 @@ namespace StandUpMeeting
         private DrawerLayout mDrawerLayout;
         private NavigationView mNavigationView;
 
-        //private ListView mDrawerList;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,61 +22,101 @@ namespace StandUpMeeting
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
 
-            mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
+            mToolbar = FindViewById<SupportToolbar>(Resource.Id.app_bar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             mNavigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
 
+            //Init Toolbar
             SetSupportActionBar(mToolbar);
-
-            //SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha);
+            SupportActionBar.SetTitle(Resource.String.app_name);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowHomeEnabled(true);
 
-            mNavigationView.NavigationItemSelected += (sender, e) =>
-            {
-                e.MenuItem.SetChecked(true);
-                // react to click here and swap fragments / navigate
-                mToolbar.Title = e.MenuItem.TitleFormatted.ToString();
-                mDrawerLayout.CloseDrawers();
-            };
+            //Attach Item slected handler to nav view
+            mNavigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
+
+            //Create ActionBarDrawerToggle Button and add it to the toolbar
+            var drawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, mToolbar, Resource.String.openDrawer, Resource.String.closeDrawer);
+            mDrawerLayout.AddDrawerListener(drawerToggle);
+            drawerToggle.SyncState();
+
+            //This is where a default home screen would be loaded / check authentication ; whatever is decided
+            //var ft = FragmentManager.BeginTransaction();
+            //ft.Add(Resource.Id.HomeFrameLayout, new HomeFragment());
+            //ft.Commit();
 
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
+        protected override void OnResume()
         {
-            switch (item.ItemId)
-            {
-                case Android.Resource.Id.Home:
-                    if (mDrawerLayout.IsDrawerOpen(Android.Support.V4.View.GravityCompat.Start))
-                        mDrawerLayout.CloseDrawer(Android.Support.V4.View.GravityCompat.Start);
-                    else
-                        mDrawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
-                    return true;
-            }
-            return base.OnOptionsItemSelected(item);
+            SupportActionBar.SetTitle(Resource.String.app_name);
+            base.OnResume();
         }
 
+        private void NavigationView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
+        {
+            switch (e.MenuItem.ItemId)
+            {
+                case (Resource.Id.nav_home):
+                    Toast.MakeText(this, "Home Selected", ToastLength.Short).Show();
+                    SupportActionBar.Title = e.MenuItem.TitleFormatted.ToString();
+                    break;
+                case(Resource.Id.nav_calendar):
+                    Toast.MakeText(this, "Calendar Selected", ToastLength.Short).Show();
+                    SupportActionBar.Title = e.MenuItem.TitleFormatted.ToString();
+                    break;
+                case (Resource.Id.nav_chat):
+                    Toast.MakeText(this, "Chat Selected", ToastLength.Short).Show();
+                    SupportActionBar.Title = e.MenuItem.TitleFormatted.ToString();
+                    break;
+                case (Resource.Id.nav_schedule):
+                    Toast.MakeText(this, "Schedule Selected", ToastLength.Short).Show();
+                    SupportActionBar.Title = e.MenuItem.TitleFormatted.ToString();
+                    break;
+
+                case (Resource.Id.nav_settings):
+                    Toast.MakeText(this, "Settings Selected", ToastLength.Short).Show();
+                    SupportActionBar.Title = e.MenuItem.TitleFormatted.ToString();
+                    break;
+                case (Resource.Id.nav_login):
+                    Toast.MakeText(this, "Logon Selected", ToastLength.Short).Show();
+                    SupportActionBar.Title = e.MenuItem.TitleFormatted.ToString();
+                    break;
+            }
+            mDrawerLayout.CloseDrawers();
+        }
+        //public override bool OnCreateOptionsMenu(IMenu menu)
+        //{
+        //    //Put the action_menu.axml in the Menu folder if you do this
+        //    //MenuInflater.Inflate(Resource.Menu.nav_menu, menu);
+        //    if(menu != null)
+        //    {
+        //        // Add menu Items here
+        //    }
+        //    return base.OnCreateOptionsMenu(menu);
+        //}
         //public override bool OnOptionsItemSelected(IMenuItem item)
         //{
-        //    mDrawerToggle.OnOptionsItemSelected(item);
+        //    switch (item.ItemId)
+        //    {
+        //        case Android.Resource.Id.Home:
+        //            if (mDrawerLayout.IsDrawerOpen(Android.Support.V4.View.GravityCompat.Start))
+        //                mDrawerLayout.CloseDrawer(Android.Support.V4.View.GravityCompat.Start);
+        //            else
+        //                mDrawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
+        //            return true;
+        //    }
         //    return base.OnOptionsItemSelected(item);
         //}
+        // Avoiding direct app exit
+        public override void OnBackPressed()
+        {
+            if (FragmentManager.BackStackEntryCount != 0)
+                FragmentManager.PopBackStack();
+            else
+                base.OnBackPressed();
 
-        //protected override void OnPostCreate(Bundle savedInstanceState)
-        //{
-        //    base.OnPostCreate(savedInstanceState);
-        //    mDrawerToggle.SyncState();
-        //}
-
-        //protected override void OnSaveInstanceState(Bundle outState)
-        //{
-        //    if (mDrawerLayout.IsDrawerOpen((int)GravityFlags.Left))
-        //        outState.PutString("DrawerState", "Opened");
-        //    else
-        //        outState.PutString("DrawerState", "Closed");
-
-        //    base.OnSaveInstanceState(outState);
-        //}
+        }
     }
 }
 
